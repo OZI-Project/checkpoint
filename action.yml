@@ -1,0 +1,59 @@
+name: ozi-checkpoint
+author: "Ross J. Duff (Eden Rose) MSc <help@oziproject.dev>"
+inputs:
+  python-version:
+    description: "Python version to checkpoint"
+    required: true
+  suite:
+    description: "OZI backend environment to use"
+    required: true
+  os:
+    description: "Operating system to run on"
+    required: false
+    default: "ubuntu-latest"
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      id: setup-python
+      with:
+        cache: 'pip'
+        cache-dependency-path: |
+          .tox/**/tmp/**/requirements.txt
+        python-version: '${{ inputs.python-version }}'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install tox-gh>=1.2
+
+    - name: '${{ inputs.suite }} (First Try)'
+      continue-on-error: true
+      id: setup1
+      run: |
+        tox -e ${{ inputs.suite }}
+
+    - name: Logging Checkpoint Failures
+      if: ${{ steps.setup1.outcome == 'failure' }}
+      continue-on-error: true
+      run: |
+        cat .tox/**/tmp/meson-logs/testlog-${{ inputs.suite }}.txt
+
+    - name: Logging OZI/Meson Failures
+      if: ${{ steps.setup1.outcome == 'failure' }}
+      continue-on-error: true
+      run: |
+        cat .tox/**/tmp/meson-logs/meson-log.txt
+
+    - name: '${{ inputs.suite }} (Second Try)'
+      if: ${{ steps.setup1.outcome == 'failure' }}
+      run: |
+        tox -r -e ${{ inputs.suite }}
+
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: ${{ inputs.suite }}-${{ inputs.os }}-${{ inputs.python-version }}-checkpoint
+        path: |
+          .tox/**/tmp/meson-logs/testlog-${{ inputs.suite }}.txt
