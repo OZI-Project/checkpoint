@@ -38,6 +38,7 @@ runs:
       id: setup1
       run: |
         tox -e ${{ inputs.suite }}
+      shell: true
 
     - name: Logging Checkpoint Failures
       if: ${{ steps.setup1.outcome == 'failure' }}
