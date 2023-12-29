@@ -1,7 +1,5 @@
 name: ozi-checkpoint
 description: "OZI continous integration checkpoint action."
-icon: check-circle
-color: green
 author: "Ross J. Duff (Eden Rose) MSc <help@oziproject.dev>"
 inputs:
   python-version:
