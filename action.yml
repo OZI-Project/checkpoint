@@ -1,4 +1,4 @@
-name: checkpoint
+name: ozi-checkpoint
 description: "OZI continous integration checkpoint action."
 author: "Ross J. Duff (Eden Rose) MSc <help@oziproject.dev>"
 branding:
