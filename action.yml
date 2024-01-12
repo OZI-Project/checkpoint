@@ -22,7 +22,7 @@ runs:
       with:
         egress-policy: audit
   
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.1.1
       with:
         fetch-depth: 0
 
