@@ -68,6 +68,7 @@ runs:
       with:
         inputs: .tox/**/tmp/meson-logs/testlog-${{ inputs.suite }}.txt
         upload-signing-artifacts: true
+        signature: ${{ inputs.suite }}-${{ inputs.os }}-${{ inputs.python-version }}-checkpoint.sigstore
     
     - uses: actions/upload-artifact@v4.3.0
       if: always()
