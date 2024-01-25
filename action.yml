@@ -66,9 +66,8 @@ runs:
     
     - uses: sigstore/gh-action-sigstore-python@v2.1.1
       with:
-        inputs: .tox/**/tmp/meson-logs/testlog-${{ inputs.suite }}.txt
+        inputs: .tox/${{ inputs.suite }}/tmp/meson-logs/testlog-${{ inputs.suite }}.txt
         upload-signing-artifacts: true
-        bundle: ${{ inputs.suite }}-${{ inputs.os }}-${{ inputs.python-version }}-checkpoint.sigstore
     
     - uses: actions/upload-artifact@v4.3.0
       if: always()
