@@ -8,9 +8,6 @@ inputs:
   python-version:
     description: "Python version to checkpoint"
     required: true
-  suite:
-    description: "OZI backend environment to use"
-    required: true
   os:
     description: "Operating system to run on"
     required: false
@@ -37,42 +34,50 @@ runs:
         python -m pip install tox-gh>=1.2
       shell: bash
 
-    - name: '${{ inputs.suite }} (First Try)'
+    - name: 'Run tests (First Try)'
       continue-on-error: true
       id: setup1
       run: |
-        tox -e ${{ inputs.suite }}
+        tox
       shell: bash
 
     - name: Logging Checkpoint Failures
       if: ${{ steps.setup1.outcome == 'failure' }}
       continue-on-error: true
       run: |
-        cat .tox/**/tmp/meson-logs/testlog-${{ inputs.suite }}.txt
+        cat .tox/dist/tmp/meson-logs/testlog-dist.txt
+        cat .tox/lint/tmp/meson-logs/testlog-lint.txt
+        cat .tox/test/tmp/meson-logs/testlog-test.txt
       shell: bash
 
     - name: Logging OZI/Meson Failures
       if: ${{ steps.setup1.outcome == 'failure' }}
       continue-on-error: true
       run: |
-        cat .tox/**/tmp/meson-logs/meson-log.txt
+        cat .tox/dist/tmp/meson-logs/meson-log.txt
+        cat .tox/lint/tmp/meson-logs/meson-log.txt
+        cat .tox/test/tmp/meson-logs/meson-log.txt
       shell: bash
 
-    - name: '${{ inputs.suite }} (Second Try)'
+    - name: 'Run tests (Second Try)'
       if: ${{ steps.setup1.outcome == 'failure' }}
       run: |
-        tox -r -e ${{ inputs.suite }}
+        tox -r
       shell: bash
     
     - uses: sigstore/gh-action-sigstore-python@v2.1.2rc1
       with:
-        inputs: .tox/${{ inputs.suite }}/tmp/meson-logs/testlog-${{ inputs.suite }}.txt
-        bundle: ${{ inputs.suite }}-${{ inputs.os }}-${{ inputs.python-version }}-checkpoint.sigstore
+        inputs: |
+          .tox/dist/tmp/meson-logs/testlog-dist.txt
+          .tox/lint/tmp/meson-logs/testlog-lint.txt
+          .tox/test/tmp/meson-logs/testlog-test.txt
         upload-signing-artifacts: true
     
     - uses: actions/upload-artifact@v4.3.0
       if: always()
       with:
-        name: ${{ inputs.suite }}-${{ inputs.os }}-${{ inputs.python-version }}-checkpoint
+        name: ${{ inputs.os }}-${{ inputs.python-version }}-checkpoint
         path: |
-          .tox/**/tmp/meson-logs/testlog-${{ inputs.suite }}.txt
+          .tox/dist/tmp/meson-logs/testlog-dist.txt
+          .tox/lint/tmp/meson-logs/testlog-lint.txt
+          .tox/test/tmp/meson-logs/testlog-test.txt
