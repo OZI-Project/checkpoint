@@ -49,13 +49,13 @@ runs:
     - name: 'Run tests (First Try)'
       if: ${{ inputs.parallel == 'true' }}
       continue-on-error: true
-      id: setup1
+      id: setup2
       run: |
         tox run-parallel --parallel-no-spinner
       shell: bash
 
     - name: Logging Checkpoint Failures
-      if: ${{ steps.setup1.outcome == 'failure' }}
+      if: ${{ (steps.setup1.outcome == 'failure') || (steps.setup2.outcome == 'failure') }}
       continue-on-error: true
       run: |
         cat .tox/dist/tmp/meson-logs/testlog-dist.txt
@@ -64,7 +64,7 @@ runs:
       shell: bash
 
     - name: Logging OZI/Meson Failures
-      if: ${{ steps.setup1.outcome == 'failure' }}
+      if: ${{ (steps.setup1.outcome == 'failure') || (steps.setup2.outcome == 'failure') }}
       continue-on-error: true
       run: |
         cat .tox/dist/tmp/meson-logs/meson-log.txt
@@ -79,7 +79,7 @@ runs:
       shell: bash
 
     - name: 'Run tests (Second Try)'
-      if: ${{ (steps.setup1.outcome == 'failure') && (inputs.parallel == 'true') }}
+      if: ${{ (steps.setup2.outcome == 'failure') && (inputs.parallel == 'true') }}
       run: |
         tox run-parallel -r --parallel-no-spinner
       shell: bash
