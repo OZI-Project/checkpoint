@@ -8,6 +8,10 @@ inputs:
   python-version:
     description: "Python version to checkpoint"
     required: true
+  parallel:
+    description: "Whether to run checkpoints in parallel."
+    required: true
+    default: "true"
   os:
     description: "Operating system to run on"
     required: false
@@ -35,10 +39,19 @@ runs:
       shell: bash
 
     - name: 'Run tests (First Try)'
+      if: ${{ inputs.parallel != 'true' }}
       continue-on-error: true
       id: setup1
       run: |
         tox
+      shell: bash
+
+    - name: 'Run tests (First Try)'
+      if: ${{ inputs.parallel == 'true' }}
+      continue-on-error: true
+      id: setup1
+      run: |
+        tox run-parallel --parallel-no-spinner
       shell: bash
 
     - name: Logging Checkpoint Failures
@@ -60,9 +73,15 @@ runs:
       shell: bash
 
     - name: 'Run tests (Second Try)'
-      if: ${{ steps.setup1.outcome == 'failure' }}
+      if: ${{ (steps.setup1.outcome == 'failure') && (inputs.parallel != 'true') }}
       run: |
         tox -r
+      shell: bash
+
+    - name: 'Run tests (Second Try)'
+      if: ${{ (steps.setup1.outcome == 'failure') && (inputs.parallel == 'true') }}
+      run: |
+        tox run-parallel -r --parallel-no-spinner
       shell: bash
     
     - uses: sigstore/gh-action-sigstore-python@v2.1.2rc1
