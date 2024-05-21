@@ -32,6 +32,7 @@ runs:
           .tox/**/tmp/**/requirements.txt
         python-version: '${{ inputs.python-version }}'
         allow-prereleases: true
+        check-latest: true
 
     - name: Install dependencies
       run: |
