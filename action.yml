@@ -16,6 +16,10 @@ inputs:
     description: "Operating system to run on"
     required: false
     default: "ubuntu-latest"
+  args:
+    description: posargs for tox
+    required: false
+    default: ""
 runs:
   using: "composite"
   steps:
@@ -80,13 +84,13 @@ runs:
     - name: 'Run tests (Second Try)'
       if: ${{ (steps.setup1.outcome == 'failure') && (inputs.parallel != 'true') }}
       run: |
-        tox -r
+        tox -r -- ${{ inputs.args }}
       shell: bash
 
     - name: 'Run tests (Second Try)'
       if: ${{ (steps.setup2.outcome == 'failure') && (inputs.parallel == 'true') }}
       run: |
-        tox run-parallel -r --parallel-no-spinner
+        tox run-parallel -r --parallel-no-spinner -- ${{ inputs.args }}
       shell: bash
     
     - uses: sigstore/gh-action-sigstore-python@v2.1.2rc1
