@@ -93,7 +93,7 @@ runs:
         tox run-parallel -r --parallel-no-spinner -- ${{ inputs.args }}
       shell: bash
     
-    - uses: sigstore/gh-action-sigstore-python@v2.1.2rc1
+    - uses: sigstore/gh-action-sigstore-python@v3.0.0
       with:
         inputs: |
           .tox/dist/tmp/meson-logs/testlog-dist.txt
