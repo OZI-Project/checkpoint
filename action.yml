@@ -41,9 +41,8 @@ runs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install uv
-        uv pip install tox-gh>=1.2 tox==4.15.0
-        uv pip install pipx>=1.5
+        python -m pip install tox-gh>=1.2 tox==4.15.0
+        python -m pip install OZI.build[core,uv]
         pipx ensurepath --force
         pipx install meson --force
       shell: bash
