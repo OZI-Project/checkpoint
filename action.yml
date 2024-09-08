@@ -96,9 +96,9 @@ runs:
 
     - name: 'Sign checkpoint testlogs'
       run: |
-        tox -e invoke -- sign-checkpoint dist
-        tox -e invoke -- sign-checkpoint lint
-        tox -e invoke -- sign-checkpoint test
+        tox -e invoke -- sign-checkpoint --suite=dist
+        tox -e invoke -- sign-checkpoint --suite=lint
+        tox -e invoke -- sign-checkpoint --suite=test
       shell: bash
 
     - uses: actions/upload-artifact@v4.4.0
