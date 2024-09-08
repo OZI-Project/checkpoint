@@ -93,12 +93,13 @@ runs:
         tox run-parallel -r --parallel-no-spinner -- ${{ inputs.args }}
       shell: bash
 
-    - name: 'Sign checkpoint testlogs'
-      run: |
-        tox -e invoke -- sign-checkpoint --suite=dist
-        tox -e invoke -- sign-checkpoint --suite=lint
-        tox -e invoke -- sign-checkpoint --suite=test
-      shell: bash
+    - uses: sigstore/gh-action-sigstore-python@v3.0.0
+      with:
+        inputs: |
+          .tox/dist/tmp/meson-logs/testlog-dist.txt
+          .tox/lint/tmp/meson-logs/testlog-lint.txt
+          .tox/test/tmp/meson-logs/testlog-test.txt
+        upload-signing-artifacts: true
 
     - uses: actions/upload-artifact@v4.4.0
       if: always()
