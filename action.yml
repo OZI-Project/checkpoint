@@ -41,8 +41,9 @@ runs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install tox-gh>=1.2 tox==4.15.0
-        python -m pip install pipx>=1.5
+        python -m pip install uv
+        uv pip install tox-gh>=1.2 tox==4.15.0
+        uv pip install pipx>=1.5
         pipx ensurepath --force
         pipx install meson --force
       shell: bash
@@ -92,20 +93,22 @@ runs:
       run: |
         tox run-parallel -r --parallel-no-spinner -- ${{ inputs.args }}
       shell: bash
-    
-    - uses: sigstore/gh-action-sigstore-python@v3.0.0
-      with:
-        inputs: |
-          .tox/dist/tmp/meson-logs/testlog-dist.txt
-          .tox/lint/tmp/meson-logs/testlog-lint.txt
-          .tox/test/tmp/meson-logs/testlog-test.txt
-        upload-signing-artifacts: true
-    
-    - uses: actions/upload-artifact@v4.3.6
+
+    - name: 'Sign checkpoint testlogs'
+      run: |
+        tox -e invoke -- sign-checkpoint dist
+        tox -e invoke -- sign-checkpoint lint
+        tox -e invoke -- sign-checkpoint test
+      shell: bash
+
+    - uses: actions/upload-artifact@v4.4.0
       if: always()
       with:
         name: ${{ inputs.os }}-${{ inputs.python-version }}-checkpoint
         path: |
+          sig/**/dist/*
+          sig/**/lint/*
+          sig/**/test/*
           .tox/dist/tmp/meson-logs/testlog-dist.txt
           .tox/lint/tmp/meson-logs/testlog-lint.txt
           .tox/test/tmp/meson-logs/testlog-test.txt
