@@ -7,6 +7,7 @@ currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 1.0.x   | ☑️                 |
 
 This page will be updated for the Alpha release to maturity.
 
