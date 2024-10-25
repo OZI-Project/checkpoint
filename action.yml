@@ -63,6 +63,11 @@ runs:
         tox run-parallel --parallel-no-spinner
       shell: bash
 
+    - name: Check binary wheel is buildable from sdist
+      run: |
+          tox -e invoke -- release
+      shell: bash
+  
     - name: Logging Checkpoint Failures
       if: ${{ (steps.setup1.outcome == 'failure') || (steps.setup2.outcome == 'failure') }}
       continue-on-error: true
