@@ -65,7 +65,7 @@ runs:
 
     - name: Check binary wheel is buildable from sdist
       run: |
-          tox -e invoke -- release
+          tox -e invoke -- release --no-cibuildwheel
       shell: bash
   
     - name: Logging Checkpoint Failures
