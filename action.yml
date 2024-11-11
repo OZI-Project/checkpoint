@@ -56,7 +56,7 @@ runs:
         home_dir=$(pipx environment --value PIPX_HOME)
         # If you wish another location, replace the expression below
         # and set `NEW_LOCATION` explicitly
-        NEW_LOCATION="~/pipx"
+        NEW_LOCATION="/pipx"
         rm -rf "$cache_dir" "$logs_dir" "$trash_dir"
         mkdir -p $NEW_LOCATION && mv "$home_dir" $NEW_LOCATION
         pipx reinstall-all
