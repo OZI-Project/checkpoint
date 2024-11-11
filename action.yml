@@ -47,6 +47,21 @@ runs:
         pipx install meson --force
       shell: bash
 
+    - name: Migrate pipx path for Windows
+      if: ${{ inputs.os == 'windows-latest' }}
+      run: |
+        cache_dir=$(pipx environment --value PIPX_VENV_CACHEDIR)
+        logs_dir=$(pipx environment --value PIPX_LOG_DIR)
+        trash_dir=$(pipx environment --value PIPX_TRASH_DIR)
+        home_dir=$(pipx environment --value PIPX_HOME)
+        # If you wish another location, replace the expression below
+        # and set `NEW_LOCATION` explicitly
+        NEW_LOCATION="~/pipx"
+        rm -rf "$cache_dir" "$logs_dir" "$trash_dir"
+        mkdir -p $NEW_LOCATION && mv "$home_dir" $NEW_LOCATION
+        pipx reinstall-all
+      shell: bash
+
     - name: 'Run tests (First Try)'
       if: ${{ inputs.parallel != 'true' }}
       continue-on-error: true
