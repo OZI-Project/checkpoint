@@ -38,12 +38,28 @@ runs:
         allow-prereleases: true
         check-latest: true
 
-    - name: Install dependencies
+    - name: Install pip
       run: |
-        python -m pip install --upgrade pip
+        python -m pip install pip~=24.3.1
+      shell: bash
+
+    - name: Install tox backend
+      run: |
         python -m pip install tox-gh>=1.2 tox==4.15.0
+      shell: bash
+
+    - name: Install pipx
+      run: |
         python -m pip install pipx>=1.5
+      shell: bash
+
+    - name: Setup pipx path
+      run: |
         pipx ensurepath --force
+      shell: bash
+
+    - name: Install meson (pipx)
+      run: |
         pipx install meson --force
       shell: bash
 
@@ -60,6 +76,12 @@ runs:
         rm -rf "$cache_dir" "$logs_dir" "$trash_dir"
         mkdir -p $NEW_LOCATION && mv "$home_dir" $NEW_LOCATION
         pipx reinstall-all
+      shell: bash
+
+    - name: Install core build deps for Windows
+      if: ${{ inputs.os == 'windows-latest' }}
+      run: |
+        pip install OZI.build[core]
       shell: bash
 
     - name: 'Run tests (First Try)'
@@ -80,7 +102,7 @@ runs:
 
     - name: Check binary wheel is buildable from sdist
       run: |
-          tox -e invoke -- release --no-cibuildwheel
+        tox -e invoke -- release --no-cibuildwheel
       shell: bash
   
     - name: Logging Checkpoint Failures
