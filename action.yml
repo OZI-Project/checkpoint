@@ -40,17 +40,7 @@ runs:
 
     - name: Install pip
       run: |
-        python -m pip install pip~=24.3.1
-      shell: bash
-
-    - name: Install tox backend
-      run: |
-        python -m pip install tox-gh>=1.2 tox==4.15.0
-      shell: bash
-
-    - name: Install pipx
-      run: |
-        python -m pip install pipx>=1.5
+        python -m pip install -r requirements.txt
       shell: bash
 
     - name: Setup pipx path
@@ -115,18 +105,6 @@ runs:
       if: ${{ (steps.setup2.outcome == 'failure') && (inputs.parallel == 'true') }}
       run: |
         tox run-parallel -r --parallel-no-spinner -- ${{ inputs.args }}
-      shell: bash
-
-    - name: Dump logs
-      if: ${{ inputs.parallel == 'true' }}
-      continue-on-error: true
-      run: |
-        cat .tox/dist/tmp/meson-logs/meson-log.txt
-        cat .tox/lint/tmp/meson-logs/meson-log.txt
-        cat .tox/test/tmp/meson-logs/meson-log.txt
-        cat .tox/dist/tmp/meson-logs/testlog-dist.txt
-        cat .tox/lint/tmp/meson-logs/testlog-lint.txt
-        cat .tox/test/tmp/meson-logs/testlog-test.txt
       shell: bash
 
     - uses: sigstore/gh-action-sigstore-python@v3.0.0
