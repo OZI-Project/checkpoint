@@ -23,6 +23,14 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Get OZI specification API
+      id: api
+      run: |
+        api=$( curl -L https://oziproject.dev/api.json )
+        echo "tox=$( $api | jq -c '.spec.python.ci.backend.tox' )" >> $GITHUB_OUTPUT
+        echo "tox-gh=$( $api | jq -c '.spec.python.ci.backend."tox-gh"' )" >> $GITHUB_OUTPUT
+      shell: bash
+
     - uses: actions/checkout@v4.2.2
       with:
         fetch-depth: 0
@@ -40,7 +48,8 @@ runs:
 
     - name: Install pip
       run: |
-        python -m pip install -r requirements.txt
+        python -m pip install --user ${{ steps.api.outputs.tox }}
+        python -m pip install --user ${{ steps.api.outputs.tox-gh }}
       shell: bash
 
     - name: Setup pipx path
