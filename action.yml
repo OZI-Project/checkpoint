@@ -26,9 +26,8 @@ runs:
     - name: Get OZI specification API
       id: api
       run: |
-        api=$( curl -L https://oziproject.dev/api.json )
-        echo "tox=$( $api | jq -c '.spec.python.ci.backend.tox' )" >> $GITHUB_OUTPUT
-        echo "tox-gh=$( $api | jq -c '.spec.python.ci.backend."tox-gh"' )" >> $GITHUB_OUTPUT
+        echo "tox=$( curl -L https://oziproject.dev/api.json | jq -c '.spec.python.ci.backend.tox' )" >> $GITHUB_OUTPUT
+        echo "tox-gh=$( curl -L https://oziproject.dev/api.json | jq -c '.spec.python.ci.backend."tox-gh"' )" >> $GITHUB_OUTPUT
       shell: bash
 
     - uses: actions/checkout@v4.2.2
