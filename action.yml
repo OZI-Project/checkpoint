@@ -30,12 +30,12 @@ runs:
         echo "tox-gh=$( curl -L https://oziproject.dev/api.json | jq -c '.spec.python.ci.backend."tox-gh"' )" >> $GITHUB_OUTPUT
       shell: bash
 
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       with:
         fetch-depth: 0
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
       id: setup-python
       with:
         cache: 'pip'
@@ -108,7 +108,7 @@ runs:
         tox run-parallel -r --parallel-no-spinner -- ${{ inputs.args }}
       shell: bash
 
-    - uses: sigstore/gh-action-sigstore-python@v3.0.0
+    - uses: sigstore/gh-action-sigstore-python@f514d46b907ebcd5bedc05145c03b69c1edd8b46
       with:
         inputs: |
           .tox/dist/tmp/meson-logs/testlog-dist.txt
@@ -116,7 +116,7 @@ runs:
           .tox/test/tmp/meson-logs/testlog-test.txt
         upload-signing-artifacts: true
     
-    - uses: actions/upload-artifact@v4.6.0
+    - uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
       if: always()
       with:
         name: ${{ inputs.os }}-${{ inputs.python-version }}-checkpoint
