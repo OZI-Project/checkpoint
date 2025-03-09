@@ -16,6 +16,10 @@ inputs:
     description: "Operating system to run on"
     required: false
     default: "ubuntu-latest"
+  submodules:
+    description: "Whether to fetch git submodules."
+    required: false
+    default: ""
   args:
     description: posargs for tox
     required: false
@@ -33,6 +37,7 @@ runs:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       with:
         fetch-depth: 0
+        submodules: '${{ inputs.submodules }}'
 
     - name: Set up Python
       uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
