@@ -20,6 +20,9 @@ inputs:
     description: "Whether to fetch git submodules."
     required: false
     default: ""
+  freethreaded:
+    description: "Enable freethreaded Python when available."
+    default: false
   args:
     description: posargs for tox
     required: false
@@ -27,26 +30,28 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Get OZI specification API
-      id: api
-      run: |
-        echo "tox=$( curl -L https://oziproject.dev/api.json | jq -c '.spec.python.ci.backend.tox' )" >> $GITHUB_OUTPUT
-        echo "tox-gh=$( curl -L https://oziproject.dev/api.json | jq -c '.spec.python.ci.backend."tox-gh"' )" >> $GITHUB_OUTPUT
-      shell: bash
-
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       with:
         fetch-depth: 0
         submodules: '${{ inputs.submodules }}'
 
-    - name: Set up Python
+    - name: Set up Python ${{ inputs.python-version }}
+      if: ${{ fromJSON(inputs.python-version) >= 3.13 }}
       uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55
-      id: setup-python
       with:
         cache: 'pip'
-        cache-dependency-path: |
-          .tox/**/tmp/**/requirements.txt
-        python-version: '${{ inputs.python-version }}'
+        python-version: ${{ inputs.python-version }}
+        allow-prereleases: true
+        check-latest: true
+        freethreaded: ${{ fromJSON(inputs.freethreaded) }}
+
+    - name: Set up Python ${{ inputs.python-version }}
+      if: ${{ fromJSON(inputs.python-version) < 3.13 }}
+      uses: actions/setup-python@8d9ed9ac5c53483de85588cdf95a591a75ab9f55
+      with:
+        cache: 'pip'
+        python-version: ${{ inputs.python-version }}
+        cache-dependency-path: .tox/**/tmp/**/requirements.txt
         allow-prereleases: true
         check-latest: true
 
