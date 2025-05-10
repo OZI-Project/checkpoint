@@ -108,14 +108,18 @@ runs:
 
     - name: 'Run tests (Second Try)'
       if: ${{ (steps.setup1.outcome == 'failure') && (inputs.parallel != 'true') }}
+      env:
+        TOX_ARGS: ${{ inputs.args }}
       run: |
-        tox -r -- ${{ inputs.args }}
+        tox -r -- $TOX_ARGS
       shell: bash
 
     - name: 'Run tests (Second Try)'
       if: ${{ (steps.setup2.outcome == 'failure') && (inputs.parallel == 'true') }}
+      env:
+        TOX_ARGS: ${{ inputs.args }}
       run: |
-        tox run-parallel -r --parallel-no-spinner -- ${{ inputs.args }}
+        tox run-parallel -r --parallel-no-spinner -- $TOX_ARGS
       shell: bash
 
     - uses: sigstore/gh-action-sigstore-python@f514d46b907ebcd5bedc05145c03b69c1edd8b46
