@@ -1,6 +1,6 @@
-name: ozi-checkpoint
-description: "OZI continous integration checkpoint action."
-author: "Ross J. Duff (Eden Rose) MSc <help@oziproject.dev>"
+name: OZI Checkpoint
+description: "continous integration checkpoint action for ozi-new created projects."
+author: "OZI Project <help@oziproject.dev>"
 branding:
   icon: check-circle
   color: green
