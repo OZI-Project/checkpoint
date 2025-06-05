@@ -91,9 +91,9 @@ ninja==1.11.1.3 \
     # via
     #   -r requirements.in
     #   meson
-ozi-build[ci,core,uv]==1.10.1 \
-    --hash=sha256:c6f8119b00a6678dd3cca9a7ebdd18ee7e44e3a0d3b6c7fb11c6390552713cc0 \
-    --hash=sha256:d14598e49821316fc96e8cfb6f46a9239ffd29391a18ede7837b2b740f0ab19b
+ozi-build[ci,core,uv]==2.2.3 \
+    --hash=sha256:5340c6682da2c4c622a99eb57c5c7c45bf45abf8aec0df9a52e48437d3d05bac \
+    --hash=sha256:a191ca418704350fe53b4cd3186e377e30e05ea6d2f035bbf3f164916f6cf430
     # via -r requirements.in
 packaging==24.2 \
     --hash=sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759 \
