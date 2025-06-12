@@ -8,3 +8,11 @@
 * submodules - Whether to fetch git submodules - default: ""
 * freethreaded - Enable freethreaded Python when available - default: false
 * sign-checkpoint-logs - Sign logs using sigstore - default: false
+
+## Outputs
+
+None, creates checkpoint log artifacts and signatures.
+
+## License
+
+MIT No Attribution
