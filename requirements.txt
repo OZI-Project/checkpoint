@@ -196,9 +196,9 @@ tox==4.26.0 \
     #   -r requirements.in
     #   ozi-build
     #   tox-gh
-tox-gh==1.4.4 \
-    --hash=sha256:4ea585f66585b90f5826b1677cfc9453747792a0f9ff83d468603bc17556e07b \
-    --hash=sha256:b962e0f8c4619e98d11c2a135939876691e148b843b7dac4cff7de1dc4f7c215
+tox-gh==1.5.0 \
+    --hash=sha256:bd4c56d1ebcde4ca2450fed347610a739614a7225945bdc89a67c8395eac9d63 \
+    --hash=sha256:fd7e8c826f4576a02af4737fd4b738817660b63898c161d6ee8f658c885f7fa1
     # via
     #   -r requirements.in
     #   ozi-build
@@ -240,9 +240,9 @@ wheel==0.45.1 \
     #   -r requirements.in
     #   ozi-build
     #   pip-tools
-zipp==3.22.0 \
-    --hash=sha256:dd2f28c3ce4bc67507bfd3781d21b7bb2be31103b51a4553ad7d90b84e57ace5 \
-    --hash=sha256:fe208f65f2aca48b81f9e6fd8cf7b8b32c26375266b009b413d45306b6148343
+zipp==3.23.0 \
+    --hash=sha256:071652d6115ed432f5ce1d34c336c0adfd6a884660d1e9712a256d3d3bd4b14e \
+    --hash=sha256:a07157588a12518c9d4034df3fbbee09c814741a33ff63c05fa29d26a2404166
     # via
     #   -r requirements.in
     #   importlib-metadata
@@ -254,9 +254,9 @@ pip==24.3.1 \
     # via
     #   -r requirements.in
     #   pip-tools
-setuptools==78.1.1 \
-    --hash=sha256:c3a9c4211ff4c309edb8b8c4f1cbfa7ae324c4ba9f91ff254e3d305b9fd54561 \
-    --hash=sha256:fcc17fd9cd898242f6b4adfaca46137a9edef687f43e6f78469692a5e70d851d
+setuptools==80.9.0 \
+    --hash=sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922 \
+    --hash=sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c
     # via
     #   -r requirements.in
     #   pip-tools
