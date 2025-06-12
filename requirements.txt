@@ -196,9 +196,9 @@ tox==4.26.0 \
     #   -r requirements.in
     #   ozi-build
     #   tox-gh
-tox-gh==1.4.4 \
-    --hash=sha256:4ea585f66585b90f5826b1677cfc9453747792a0f9ff83d468603bc17556e07b \
-    --hash=sha256:b962e0f8c4619e98d11c2a135939876691e148b843b7dac4cff7de1dc4f7c215
+tox-gh==1.5.0 \
+    --hash=sha256:bd4c56d1ebcde4ca2450fed347610a739614a7225945bdc89a67c8395eac9d63 \
+    --hash=sha256:fd7e8c826f4576a02af4737fd4b738817660b63898c161d6ee8f658c885f7fa1
     # via
     #   -r requirements.in
     #   ozi-build
