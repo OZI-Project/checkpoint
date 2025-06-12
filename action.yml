@@ -23,10 +23,9 @@ inputs:
   freethreaded:
     description: "Enable freethreaded Python when available."
     default: false
-  args:
-    description: posargs for tox
-    required: false
-    default: ""
+  sign-checkpoint-logs:
+    description: "Sign log files with Sigstore."
+    default: false
 runs:
   using: "composite"
   steps:
@@ -112,21 +111,18 @@ runs:
 
     - name: 'Run tests (Second Try)'
       if: ${{ (steps.setup1.outcome == 'failure') && (inputs.parallel != 'true') }}
-      env:
-        TOX_ARGS: ${{ inputs.args }}
       run: |
-        tox -r -- $TOX_ARGS
+        tox -r
       shell: bash
 
     - name: 'Run tests (Second Try)'
       if: ${{ (steps.setup2.outcome == 'failure') && (inputs.parallel == 'true') }}
-      env:
-        TOX_ARGS: ${{ inputs.args }}
       run: |
-        tox run-parallel -r --parallel-no-spinner -- $TOX_ARGS
+        tox run-parallel -r --parallel-no-spinner
       shell: bash
 
     - uses: sigstore/gh-action-sigstore-python@f514d46b907ebcd5bedc05145c03b69c1edd8b46
+      if: inputs.sign-checkpoint-logs == 'true'
       with:
         inputs: |
           .tox/dist/tmp/meson-logs/testlog-dist.txt
