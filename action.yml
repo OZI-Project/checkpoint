@@ -11,7 +11,7 @@ inputs:
   parallel:
     description: "Whether to run checkpoints in parallel."
     required: true
-    default: "true"
+    default: "false"
   os:
     description: "Operating system to run on"
     required: false
