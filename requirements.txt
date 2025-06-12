@@ -106,9 +106,9 @@ packaging==24.2 \
     #   pyproject-api
     #   setuptools-scm
     #   tox
-pathvalidate==3.2.2 \
-    --hash=sha256:088dd9cae734389b5949c6f42a159dcd8a2d66a2358dfce8e1252712ada66191 \
-    --hash=sha256:ff7383cafc499fa574b46c1c00cf2965a53aedc92dd2d62729993cdba308319b
+pathvalidate==3.2.3 \
+    --hash=sha256:59b5b9278e30382d6d213497623043ebe63f10e29055be4419a9c04c721739cb \
+    --hash=sha256:5eaf0562e345d4b6d0c0239d0f690c3bd84d2a9a3c4c73b99ea667401b27bee1
     # via
     #   -r requirements.in
     #   ozi-build
