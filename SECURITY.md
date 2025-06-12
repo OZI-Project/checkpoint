@@ -2,14 +2,7 @@
 
 ## Supported Versions
 
-Which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.0.x   | ☑️                 |
-
-This page will be updated for the Alpha release to maturity.
+Always use the latest patch version.
 
 ## Disclosure
 
