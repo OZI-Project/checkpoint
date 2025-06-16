@@ -16,9 +16,9 @@ build==1.2.2.post1 \
     # via
     #   -r requirements.in
     #   pip-tools
-cachetools==6.0.0 \
-    --hash=sha256:82e73ba88f7b30228b5507dce1a1f878498fc669d972aef2dde4f3a3c24f103e \
-    --hash=sha256:f225782b84438f828328fc2ad74346522f27e5b1440f4e9fd18b20ebfd1aa2cf
+cachetools==6.1.0 \
+    --hash=sha256:1c7bb3cf9193deaf3508b7c5f2a79986c13ea38965c5adcff1f84519cf39163e \
+    --hash=sha256:b4c4f404392848db3ce7aac34950d17be4d864da4b8b66911008e430bc544587
     # via
     #   -r requirements.in
     #   tox
