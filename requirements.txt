@@ -91,9 +91,9 @@ ninja==1.11.1.4 \
     # via
     #   -r requirements.in
     #   meson
-ozi-build[ci,core,uv]==2.3.8 \
-    --hash=sha256:1b21fb777dba8085ab1579acb0dabb8161f552c58fd06e72e3e20b18e6ee2bbe \
-    --hash=sha256:41208129fd0f2a4560e99665baf23460bd524972a0d38b6342f8f4710d1baecc
+ozi-build[ci,core,uv]==2.3.9 \
+    --hash=sha256:31ef43501089b7cae71134d21f0d5e397f55cd2e42168091c3b15a9ca96d283b \
+    --hash=sha256:c28a87c0dcaddd04f2115042ed2a4cee67a28e204009dfd1e0a63d7167bd14c7
     # via -r requirements.in
 packaging==25.0 \
     --hash=sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484 \
@@ -235,9 +235,9 @@ uv==0.8.8 \
     # via
     #   -r requirements.in
     #   ozi-build
-virtualenv==20.33.0 \
-    --hash=sha256:106b6baa8ab1b526d5a9b71165c85c456fbd49b16976c88e2bc9352ee3bc5d3f \
-    --hash=sha256:47e0c0d2ef1801fce721708ccdf2a28b9403fa2307c3268aebd03225976f61d2
+virtualenv==20.33.1 \
+    --hash=sha256:07c19bc66c11acab6a5958b815cbcee30891cd1c2ccf53785a28651a0d8d8a67 \
+    --hash=sha256:1b44478d9e261b3fb8baa5e74a0ca3bc0e05f21aa36167bf9cbf850e542765b8
     # via
     #   -r requirements.in
     #   tox
