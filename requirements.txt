@@ -64,9 +64,9 @@ invoke==2.2.0 \
     # via
     #   -r requirements.in
     #   ozi-build
-meson[ninja]==1.8.3 \
-    --hash=sha256:ef02b806ce0c5b6becd5bb5dc9fa67662320b29b337e7ace73e4354500590233 \
-    --hash=sha256:f118aa910fc0a137cc2dd0122232dbf82153d9a12fb5b0f5bb64896f6a157abf
+meson[ninja]==1.9.0 \
+    --hash=sha256:45e51ddc41e37d961582d06e78c48e0f9039011587f3495c4d6b0781dad92357 \
+    --hash=sha256:cd27277649b5ed50d19875031de516e270b22e890d9db65ed9af57d18ebc498d
     # via
     #   -r requirements.in
     #   ozi-build
