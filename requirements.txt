@@ -4,12 +4,6 @@
 #
 #    pip-compile --allow-unsafe --generate-hashes requirements.in
 #
-pipx==1.7.1 \
-    --hash=sha256:3933c43bb344e649cb28e10d357e0967ce8572f1c19caf90cf39ae95c2a0afaf \
-    --hash=sha256:762de134e16a462be92645166d225ecef446afaef534917f5f70008d63584360
-    # via
-    #   -r requirements.in
-    #   ozi-build
 tox==4.30.2 \
     --hash=sha256:772925ad6c57fe35c7ed5ac3e958ac5ced21dff597e76fc40c1f5bf3cd1b6a2e \
     --hash=sha256:efd261a42e8c82a59f9026320a80a067f27f44cad2e72a6712010c311d31176b
