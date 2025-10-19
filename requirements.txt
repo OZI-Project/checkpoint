@@ -4,10 +4,6 @@
 #
 #    pip-compile --allow-unsafe --generate-hashes requirements.in
 #
-pip-tools==7.5.0 \
-    --hash=sha256:30639f50961bb09f49d22f4389e8d7d990709677c094ce1114186b1f2e9b5821 \
-    --hash=sha256:69758e4e5a65f160e315d74db46246fdbb30d549f1ed0c4236d057122c9b0f18
-    # via -r requirements.in
 pipx==1.7.1 \
     --hash=sha256:3933c43bb344e649cb28e10d357e0967ce8572f1c19caf90cf39ae95c2a0afaf \
     --hash=sha256:762de134e16a462be92645166d225ecef446afaef534917f5f70008d63584360
