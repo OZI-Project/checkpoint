@@ -103,9 +103,9 @@ tomli==2.3.0 \
     --hash=sha256:feb0dacc61170ed7ab602d3d972a58f14ee3ee60494292d384649a3dc38ef463 \
     --hash=sha256:ff72b71b5d10d22ecb084d345fc26f42b5143c5533db5e2eaba7d2d335358876
     # via -r requirements.in
-tox==4.31.0 \
-    --hash=sha256:266381ffef35615ec0d40ae4969a9e43b506017597c0413d6545a603cc8c7561 \
-    --hash=sha256:328f392e6567e46cb0f9b625679456744dde940287dd1b39117627dc4b21d5da
+tox==4.34.1 \
+    --hash=sha256:5610d69708bab578d618959b023f8d7d5d3386ed14a2392aeebf9c583615af60 \
+    --hash=sha256:ef1e82974c2f5ea02954d590ee0b967fad500c3879b264ea19efb9a554f3cc60
     # via
     #   -r requirements.in
 typing-extensions==4.15.0 \
