@@ -36,7 +36,7 @@ runs:
 
     - name: Set up Python ${{ inputs.python-version }}
       if: ${{ fromJSON(inputs.python-version) >= 3.13 }}
-      uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
       with:
         cache: 'pip'
         python-version: ${{ inputs.python-version }}
@@ -46,7 +46,7 @@ runs:
 
     - name: Set up Python ${{ inputs.python-version }}
       if: ${{ fromJSON(inputs.python-version) < 3.13 }}
-      uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
       with:
         cache: 'pip'
         python-version: ${{ inputs.python-version }}
@@ -130,7 +130,7 @@ runs:
           .tox/test/tmp/meson-logs/testlog-test.txt
         upload-signing-artifacts: true
     
-    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+    - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
       if: always()
       with:
         name: ${{ inputs.os }}-${{ inputs.python-version }}-checkpoint
