@@ -108,9 +108,9 @@ tomli==2.4.1 \
     --hash=sha256:ff18e6a727ee0ab0388507b89d1bc6a22b138d1e2fa56d1ad494586d61d2eae9 \
     --hash=sha256:ff2983983d34813c1aeb0fa89091e76c3a22889ee83ab27c5eeb45100560c049
     # via -r requirements.in
-tox==4.31.0 \
-    --hash=sha256:266381ffef35615ec0d40ae4969a9e43b506017597c0413d6545a603cc8c7561 \
-    --hash=sha256:328f392e6567e46cb0f9b625679456744dde940287dd1b39117627dc4b21d5da
+tox==4.50.3 \
+    --hash=sha256:5e788a512bfe6f7447e0c8d7c1b666eb2e56e5e676c65717490423bec37d1a07 \
+    --hash=sha256:c745641de6cc4f19d066bd9f98c1c25f7affb005b381b7f3694a1f142ea0946b
     # via
     #   -r requirements.in
 typing-extensions==4.15.0 \
