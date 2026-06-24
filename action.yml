@@ -36,7 +36,7 @@ runs:
 
     - name: Set up Python ${{ inputs.python-version }}
       if: ${{ fromJSON(inputs.python-version) >= 3.13 }}
-      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+      uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
       with:
         cache: 'pip'
         python-version: ${{ inputs.python-version }}
@@ -46,7 +46,7 @@ runs:
 
     - name: Set up Python ${{ inputs.python-version }}
       if: ${{ fromJSON(inputs.python-version) < 3.13 }}
-      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+      uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
       with:
         cache: 'pip'
         python-version: ${{ inputs.python-version }}
